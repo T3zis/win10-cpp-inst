@@ -39,39 +39,32 @@
   " нем: вес, мощность мотора, скорость.\nПроизводный класс  – автомобиль;\nпроизводный" \
 	" класс второго поколения – спортивный автомобиль, грузовой автомобиль.\n\n";
 
-#define MAIN_MENU							                                                   \
-  "\nВыберите один из пунктов:\n1) Вывести список абонентов, "                   \
-  "у которых время внутригородских разговоров превышает заданное\n2) Вывести "   \
-  "список абонентов воспользовавшихся междугородней связью\n3) Вывести "         \
-  "список абонентов в алфавитном порядке\n4) Перейти в главное меню\n"
 
-#define MAIN_CHOICE							                                                 \
-  "\n\nВыберите один из пунктов:\n1) Провести тесты для программы\n2) "	         \
-  "Загрузить характеристики автомобилей из файла\n3) Заполнить характеристики"   \
-  " автомобилей через консоль\n4) Выйти из программы\n"
+#define MAIN_CHOICE							                                                         \
+  "\n\nВыберите один из пунктов:\n"                                                      \
+  "{1} Провести тесты для программы\n"                                                   \
+  "{2} Загрузить характеристики автомобилей из файла\n"	                                 \
+  "{3} Заполнить характеристики автомобилей через консоль\n"                             \
+  "{4} Выйти из программы\n\n";
+
+#define CASE_CHOICE						                                                           \
+  "\nВыберите один из пунктов:\n"                                                        \
+  "{1} Добавить средство передвижения\n"                                                 \
+  "{2} Удалить средство передвижения\n"                                                  \
+  "{3} Показать список средств передвижения\n"                                           \
+  "{4} Выйти в главное меню\n\n";
 
 
 /*______HEADER-FILES______*/
- #include "0_input_check.h"
+#include "0_input_check.h"
+#include "3_utilities.h"
 /*________________________*/
 
 
 /*__________ENUMS__________*/
-enum main_choice
-{
-	RUN_TEST         = 1,
-	IMPORT_FROM_FILE = 2,
-	CONSOLE_IMPUT    = 3,
-	EXIT             = 4
-};
+enum FIRST_CHOICE{RUN_TEST = 1, IMPORT_FROM_FILE, CONSOLE_INPUT, EXIT};
 
-
-enum filtering_choice
-{
-	FILTER_BY_LCT = 1,
-	FILTER_BY_ICT = 2,
-	FILTER_BY_ALF = 3
-};
+enum SECOND_CHOICE{ADD = 1, DEL, SHOW, BACK};
 /*_________________________*/
 
 
@@ -81,37 +74,48 @@ int main(void)
   std::ios::sync_with_stdio(false);
 	setlocale(LC_ALL, "Russian");
   InputCheck _input;
-  const int  begin_choice = 1, end_choice = 4;
-  int first_choice;
+  int first_choice{ 0 }, second_choice{ 0 };
 
   std::cout << GREETINGS;
   
   for (;;) {
     std::cout << MAIN_CHOICE;
-    do {
-      std::cout << "Выберите один из пунктов:";
-      first_choice = _input.get_int();
-    } while (first_choice < begin_choice || first_choice > end_choice);
+    first_choice = make_choice();
 
-    first_choice = static_cast<main_choice>(first_choice);
+    first_choice = static_cast<FIRST_CHOICE>(first_choice);
 
     switch (first_choice) {
 
-    case RUN_TEST:
+    case RUN_TEST: {
 
       break;
-    case IMPORT_FROM_FILE:
+    }
+    case IMPORT_FROM_FILE: {
 
       break;
-    case CONSOLE_IMPUT:
-
+    }
+    case CONSOLE_INPUT: {
+      for (;;) {
+        std::cout << CASE_CHOICE;
+        second_choice = make_choice();
+        second_choice = static_cast<SECOND_CHOICE>(second_choice);
+        switch (second_choice) {
+        case ADD: {
+          break;
+        }
+        case DEL: {
+          break;
+        }
+        case SHOW: {
+          break;
+        }
+        }
+        if (second_choice == BACK) break;
+      }
       break;
+    }
     case EXIT: exit(EXIT_SUCCESS);
     }
   }
-
-  
-	
-  return 0;
 }
 /*______________________________*/
