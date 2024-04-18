@@ -29,7 +29,26 @@
   
 */
 
+#define GREETINGS							                                                           \
+  "Щербаков Сергей Игоревич\nГруппа 4304\nВариант 1\n\nТекст задания:\nВ контр"          \
+  "ольной работе задается базовый и производный класс.\nНеобходимо разработать поля"     \
+  " и методы, наследуемые из базового класса,\nа также собственные компоненты"           \
+  " производных классов.\nБазовый класс может быть абстрактным.\nРеализовать"            \
+  " возможность получения списка объектов в контейнере.\nПредусмотреть необходимые"      \
+  " проверки исходных данных.\nБазовый класс – средство передвижения.\nПоля в"           \
+  " нем: вес, мощность мотора, скорость.\nПроизводный класс  – автомобиль;\nпроизводный" \
+	" класс второго поколения – спортивный автомобиль, грузовой автомобиль.\n\n";
 
+#define MAIN_MENU							                                                   \
+  "\nВыберите один из пунктов:\n1) Вывести список абонентов, "                   \
+  "у которых время внутригородских разговоров превышает заданное\n2) Вывести "   \
+  "список абонентов воспользовавшихся междугородней связью\n3) Вывести "         \
+  "список абонентов в алфавитном порядке\n4) Перейти в главное меню\n"
+
+#define MAIN_CHOICE							                                                 \
+  "\n\nВыберите один из пунктов:\n1) Провести тесты для программы\n2) "	         \
+  "Загрузить характеристики автомобилей из файла\n3) Заполнить характеристики"   \
+  " автомобилей через консоль\n4) Выйти из программы\n"
 
 
 /*______HEADER-FILES______*/
@@ -40,10 +59,10 @@
 /*__________ENUMS__________*/
 enum main_choice
 {
-	RUN_TEST            = 1,
-	FILTER_FROM_FILE    = 2,
-	FILTER_FROM_CONSOLE = 3,
-	EXIT                = 4
+	RUN_TEST         = 1,
+	IMPORT_FROM_FILE = 2,
+	CONSOLE_IMPUT    = 3,
+	EXIT             = 4
 };
 
 
@@ -61,7 +80,35 @@ int main(void)
 {
   std::ios::sync_with_stdio(false);
 	setlocale(LC_ALL, "Russian");
-	//InputCheck _input;
+  InputCheck _input;
+  const int  begin_choice = 1, end_choice = 4;
+  int first_choice;
+
+  std::cout << GREETINGS;
+  
+  for (;;) {
+    std::cout << MAIN_CHOICE;
+    do {
+      std::cout << "Выберите один из пунктов:";
+      first_choice = _input.get_int();
+    } while (first_choice < begin_choice || first_choice > end_choice);
+
+    first_choice = static_cast<main_choice>(first_choice);
+
+    switch (first_choice) {
+
+    case RUN_TEST:
+
+      break;
+    case IMPORT_FROM_FILE:
+
+      break;
+    case CONSOLE_IMPUT:
+
+      break;
+    case EXIT: exit(EXIT_SUCCESS);
+    }
+  }
 
   
 	
