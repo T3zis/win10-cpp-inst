@@ -3,6 +3,7 @@
 /*________________________*/
 
 
+
 /*________________get-int________________*/
 int InputCheck::get_int(void)
 {
@@ -11,7 +12,7 @@ int InputCheck::get_int(void)
   bool        correctness{false};
 
   while (!correctness) {
-    std::cout << "Введите целое число: ";
+    std::cout << "\nВведите целое число: ";
     std::cin  >> input_str;
     try {
       size_t pos_symbol;
@@ -43,7 +44,7 @@ double InputCheck::get_double(void)
   bool        correctness{false};
 
   while (!correctness) {
-    std::cout << "Введите вещественное число: ";
+    std::cout << "\nВведите вещественное число: ";
     std::cin  >> input_str;
     try {
       size_t pos_symbol;

@@ -1,18 +1,16 @@
 ﻿#pragma once
 
-/*____LIBS____*/
 #include <iostream>
 #include <string>
-#include <algorithm>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <filesystem>
-/*________________________*/
+
+#include "2_vehicle.h"
 
 
 
-/*_________class-InputCheck_________*/
 class InputCheck
 {
 public:
@@ -20,4 +18,3 @@ public:
 
 	double get_double(void);
 };
-/*___________________________________*/
