@@ -53,15 +53,14 @@
   "{2} Выйти в главное меню\n\n"
 
 
-#include "0_input_check.h"
 #include "3_utilities.h"
 
 
-enum FIRST_CHOICE{RUN_TEST = 1, IMPORT_FROM_FILE, CONSOLE_INPUT, EXIT};
+enum FIRST_CHOICE  {RUN_TEST = 1, IMPORT_FROM_FILE, CONSOLE_INPUT, EXIT};
 
-enum SECOND_CHOICE{ADD = 1, BACK};
+enum SECOND_CHOICE {ADD = 1, BACK};
 
-enum LAST_CHOICE{SHOW = 1, SAVE, TO_MENU};
+enum LAST_CHOICE   {SHOW = 1, SAVE, TO_MENU};
 
 
 int main(void)
@@ -119,12 +118,20 @@ int main(void)
               std::string line;
               bool validation_of_all_line = true;
               while (std::getline(file_check, line)) {
-                int semicolon_count = std::count(line.begin(), line.end(), ';');
-                if (semicolon_count != 7) {
+                int semicolon_count = static_cast<int>(std::count(line.begin(), line.end(), ';'));
+                if (semicolon_count != 7) { //
                   std::cerr << "Ошибка! В строке должно быть 7 точек с запятой.\n";
                   validation_of_all_line = false;
                   break;
                 }
+
+                for (int i = 0; i < line.size(); i++) 
+                  if (line[i] == ';' && (i == 0 || i == line.size() - 1 || line[i - 1] == ';')) {
+                    std::cerr << "Ошибка! формат файла не корректен.\n";
+                    validation_of_all_line = false;
+                    break;
+                  }
+                if (validation_of_all_line == false) break;
 
                 if (line.empty()) {
                   std::cerr << "Ошибка! В файл есть пустые строки.\n";
@@ -132,7 +139,7 @@ int main(void)
                   break;
                 }
                 bool valid_symbols = std::all_of(line.begin(), line.end(), [](char c) {
-                  return std::isdigit(c) || c == ';'; 
+                  return std::isdigit(c) || c == ';';
                   });
                 if (!valid_symbols) {
                   validation_of_all_line = false;
@@ -287,7 +294,7 @@ int main(void)
           std::cout << "Введите количество спортивных автомобилей.";
           num_sport_car = _input.get_int();
           while (num_sport_car < 0) {
-            std::cout << "Количесво должно быть >= 0";
+            std::cout << "Количество должно быть >= 0";
             num_sport_car = _input.get_int();
             std::cout << "\n";
           }
@@ -306,7 +313,7 @@ int main(void)
             std::cout << "\nВведите количество колес.";
             num_wheels = _input.get_int();
             more_0(num_wheels);
-            std::cout << "\nВведите колчество окон.";
+            std::cout << "\nВведите количество окон.";
             num_windows = _input.get_int();
             more_0(num_windows);
             std::cout << "\nВведите время разгона до 100 км/ч.";
@@ -323,7 +330,7 @@ int main(void)
           std::cout << "\nВведите количество грузовых автомобилей.";
           num_truck = _input.get_int();
           while (num_truck < 0) {
-            std::cout << "\nКоличесво должно быть >= 0";
+            std::cout << "\nКоличество должно быть >= 0";
             num_truck = _input.get_int();
             std::cout << "\n";
           }
@@ -342,7 +349,7 @@ int main(void)
             std::cout << "\nВведите количество колес.";
             num_wheels = _input.get_int();
             more_0(num_wheels);
-            std::cout << "\nВведите колчество окон.";
+            std::cout << "\nВведите количество окон.";
             num_windows = _input.get_int();
             more_0(num_windows);
             std::cout << "\nВведите пробег.";

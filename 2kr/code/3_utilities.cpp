@@ -18,7 +18,7 @@ int make_choice(int count)
 	return res;
 }
 
-int more_0(int res)
+void more_0(int &res)
 {
 	InputCheck _input;
 
@@ -27,7 +27,6 @@ int more_0(int res)
 		res = _input.get_int();
 		std::cout << "\n";
 	}
-	return res;
 }
 
 
@@ -175,7 +174,7 @@ void start_test(void)
 	____sport_car test_sport_car(2, 3, 4, 5, 6, 7, 8);
 	ASSERT(test_sport_car.get_weight() == 2);
 
-	ASSERT(test_sport_car.get_engine_power() == 4);
+	ASSERT(test_sport_car.get_engine_power() == 3);
 
 	ASSERT(test_sport_car.get_speed() == 4);
 

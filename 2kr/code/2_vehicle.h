@@ -23,11 +23,6 @@ public:
 	int get_engine_power() const { return engine_power; }
 	int get_speed()        const { return speed; }
 	
-
-	void set_weight(int new_weight)             { weight = new_weight; }
-	void set_engine_power(int new_engine_power) { engine_power = new_engine_power; }
-	void set_speed(int new_speed)               { speed = new_speed; }
-	
 	virtual std::string save_info() const = 0;
 
 	virtual void show_info() const = 0;
@@ -49,8 +44,6 @@ public:
 	int get_num_wheels()  const { return num_wheels; }
 	int get_num_windows() const { return num_windows; }
 
-	void set_num_wheels(int new_num_wheels)   { num_wheels = new_num_wheels; }
-	void set_num_windows(int new_num_windows) { num_windows = new_num_windows; }
 };
 
 
@@ -67,8 +60,7 @@ public:
 
 	virtual ~____sport_car()  {}
 
-	int get_up_to_100() const    { return time_up_to_100km; }
-	int get_num_turbines() const { return num_turbines; }
+	
 
 	// написать геттеры и сеттеры
 	void show_info() const override {
@@ -84,13 +76,14 @@ public:
 	}
 
 	std::string save_info() const override {
-		return "2;" + std::to_string(get_weight()) + ";" + std::to_string(get_engine_power())
+		return "1;" + std::to_string(get_weight()) + ";" + std::to_string(get_engine_power())
 			+ ";" + std::to_string(get_speed()) + ";" + std::to_string(get_num_wheels())
 			+ ";" + std::to_string(get_num_windows()) + ";" + std::to_string(time_up_to_100km) + ";"
 			+ std::to_string(num_turbines) + "\n";
 	}
 
-
+	int get_up_to_100() const    { return time_up_to_100km; }
+	int get_num_turbines() const { return num_turbines; }
 };
 
 
@@ -120,7 +113,7 @@ public:
 	}
 
 	std::string save_info() const override {
-		return "1;" + std::to_string(get_weight()) + ";" + std::to_string(get_engine_power())
+		return "2;" + std::to_string(get_weight()) + ";" + std::to_string(get_engine_power())
 			+ ";" + std::to_string(get_speed()) + ";" + std::to_string(get_num_wheels())
 			+ ";" + std::to_string(get_num_windows()) + ";" + std::to_string(mileage) + ";"
 			+ std::to_string(body_volume) + "\n";

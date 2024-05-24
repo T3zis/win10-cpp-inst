@@ -7,7 +7,7 @@
 
 int make_choice(int count);
 
-int more_0(int res);
+void more_0(int &res);
 
 void save_to_file(std::vector<std::unique_ptr<____car>> &cars);
 
